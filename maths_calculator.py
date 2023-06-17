@@ -1,5 +1,5 @@
 import PySimpleGUI as sg 
-from lib.functions import bin_expand, combinations  
+from lib.functions import bin_expand, combinations_q  
 
 sg.theme('DarkAmber')
 
@@ -44,10 +44,7 @@ def gui():
             curr_layout = 2 
 
         if event == '-C1-':
-            if int(values['-CHO-']) > int(values['-TOT-']):
-                sg.popup('Total has to be greater than choose!!!')
-            else:
-                window['-COM-'].update(combinations(int(values['-TOT-']), int(values['-CHO-'])))
+            window['-COM-'].update(combinations_q(values['-TOT-'], values['-CHO-']))
         
         if 'Back' in event: 
             window[f'-COL{curr_layout}-'].update(visible = False)
