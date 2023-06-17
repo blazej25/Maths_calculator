@@ -1,42 +1,11 @@
 import PySimpleGUI as sg 
+from lib.functions import bin_expand, combinations  
+
 sg.theme('DarkAmber')
 
 def getLabelledInputBox(box_name, tag_name):
     return [sg.Text(f'{box_name}: ', size = (15, 1)), sg.Input(key = f'-{tag_name}-')]
-
-def factorial(n):
-    match n:
-        case 0: return 1
-        case 1: return 1
-        case other: return n * factorial(n-1)
-
-def combinations(total, choose):
-    if total == choose:
-        return 1     
-
-    diff = total - choose
-
-    f_total = factorial(total)
-    f_choose = factorial(choose)
-    f_diff = factorial(diff)
-
-    result = f_total / (f_choose * f_diff)
-
-    return int(result)
-
-def bin_expand(a, b, pow):
-    result = ''
-
-    for i in range(pow + 1):
-        if pow - i == 0:
-            result += f'+ {b**pow}'
-        elif i == 0:
-            result += f'{a**pow}x^{pow} '
-        else:
-            result += f'+ {(combinations(pow, i) * (b**i) * a**(pow - i))}x^{pow - i} '
-
-    return result
-    
+   
 def gui():
     layout1 = [[sg.Text('Welcome to our maths calculator! What would you like to calculate?')],
                [sg.Button('Combinations'), sg.Button('Binomial expansion')],
