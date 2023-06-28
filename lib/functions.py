@@ -1,3 +1,10 @@
+from math import log10, floor
+
+def round_sd(num, sd):
+    num = round(num, -int(floor(log10(abs(num)))) + (sd - 1))    
+
+    return num
+
 def separator(inp: str):
     inp = list(map(int, inp.split('/')))
 
@@ -46,9 +53,9 @@ def combinations_q(total, choose):
             for i in range(choose):
                 numerator *= total - i 
 
-    result = numerator / factorial(choose)
+    result = numerator / factorial(choose)    
 
-    return result 
+    return round_sd(result, 3) 
 
 def bin_expand(a, b, pow):
     result = ''
