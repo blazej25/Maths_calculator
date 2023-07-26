@@ -55,7 +55,12 @@ def combinations_q(total, choose):
 
     result = numerator / factorial(choose)    
 
-    return round_sd(result, 3) 
+    ratio = (result).as_integer_ratio()
+
+    if ratio[1] == 1:
+        return str(ratio[0])
+    else:
+        return f'{ratio[0]}/{ratio[1]}'
 
 def bin_expand(a, b, pow):
     result = ''
